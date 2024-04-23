@@ -7,6 +7,7 @@ import { useForm, Controller, Control, useFieldArray } from "react-hook-form";
 import { Button } from "@mui/material";
 import axios from "axios";
 import toast from "react-hot-toast";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 import AutoCompleteLocation, {
   Result,
@@ -77,7 +78,7 @@ const BasicFormControl: React.FC<Props> = ({
     try {
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:5000/api/tour/update/${id}`,
+        `${BACKEND_URL}/api/tour/update/${id}`,
         { ...data, city: selectedLocation?.name },
         config
       );
@@ -86,6 +87,7 @@ const BasicFormControl: React.FC<Props> = ({
       }
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }

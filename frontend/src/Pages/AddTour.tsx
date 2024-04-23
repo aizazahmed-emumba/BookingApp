@@ -13,7 +13,7 @@ const AddTour: React.FC = () => {
         </div>
         <div>
           <img
-            src="/public/miami-city.jpg"
+            src="/miami-city.jpg"
             alt="Miami City"
             className="w-full h-full object-cover"
           />
