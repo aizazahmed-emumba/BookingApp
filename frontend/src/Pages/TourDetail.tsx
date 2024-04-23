@@ -24,9 +24,7 @@ const TourDetail: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/tour/${id}`
-        );
+        const response = await axios.get(`${BACKEND_URL}/api/tour/${id}`);
         console.log(response.data);
         setTour(response.data);
       } catch (error) {
