@@ -41,7 +41,7 @@ const __dirname = path.resolve();
 app.use('/uploads',express.static(path.join(__dirname,'/uploads')));
 
 app.get('/',(req,res)=>{
-    res.send(`API is running visit <a href=${process.env.CLIENT_URL} >here</a> ${process.env.CLIENT_URL} `);
+    res.send(`API is running visit <a href=${process.env.FRONTEND_URL} >here</a> ${process.env.FRONTEND_URL} `);
 })
 
 app.use(notFound)
