@@ -39,7 +39,12 @@ const Tours: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [
+    searchParams.get("location"),
+    searchParams.get("dateFrom"),
+    searchParams.get("dateTo"),
+    searchParams.get("priceRange"),
+  ]);
 
   if (loading) {
     return (

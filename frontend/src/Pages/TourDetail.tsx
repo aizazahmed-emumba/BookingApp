@@ -189,7 +189,7 @@ const TourDetail: React.FC = () => {
               <p>Return</p>
             </div>
             <div className="w-full font-normal">
-              <p>7:00 PM on Day {Tour?.Durations}</p>
+              <p>7:00 PM on Day {Tour?.duration}</p>
             </div>
           </div>
           <div className="flex justify-between pb-6 items-center border-b border-black text-lg font-bold mt-5">
@@ -204,41 +204,17 @@ const TourDetail: React.FC = () => {
                 />
                 <p>Basic first aid kit</p>
               </div>{" "}
-              <div className="flex justify-start items-center">
-                <CheckCircleIcon
-                  fontSize="small"
-                  className="text-green-500 mr-2"
-                />
-                <p>Comfortable Private Booked Transport</p>
-              </div>{" "}
-              <div className="flex justify-start items-center">
-                <CheckCircleIcon
-                  fontSize="small"
-                  className="text-green-500 mr-2"
-                />
-                <p>Fule Expense</p>
-              </div>{" "}
-              <div className="flex justify-start items-center">
-                <CheckCircleIcon
-                  fontSize="small"
-                  className="text-green-500 mr-2"
-                />
-                <p>Mess Tent, Kitchen Utensils, and Cook</p>
-              </div>{" "}
-              <div className="flex justify-start items-center">
-                <CheckCircleIcon
-                  fontSize="small"
-                  className="text-green-500 mr-2"
-                />
-                <p>Detail Guided Maps</p>
-              </div>{" "}
-              <div className="flex justify-start items-center">
-                <CheckCircleIcon
-                  fontSize="small"
-                  className="text-green-500 mr-2"
-                />
-                <p>Waterproof Tents on twin Sharing</p>
-              </div>{" "}
+              {Tour?.facilities?.map((facility: string, index: number) => {
+                return (
+                  <div className="flex justify-start items-center" key={index}>
+                    <CheckCircleIcon
+                      fontSize="small"
+                      className="text-green-500 mr-2"
+                    />
+                    <p>{facility}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
