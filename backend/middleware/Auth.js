@@ -6,13 +6,19 @@ export const isAuthenticatedUser = asyncHandler(async (req, res, next) => {
 
     const { token } = req.cookies;
 
+    
     if (!token) {
-        return next(new Error('Login first'));
+        return res.status(401).json({ success: false, message: 'Unauthorized - Login first' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findById(decoded._id);
-    next();
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = await User.findById(decoded._id);
+        next();
+    } catch (error) {
+        return res.status(401).json({ success: false, message: 'Unauthorized - Invalid token' });
+    }
+
 });
 
 export const isAdmin = asyncHandler(async (req, res, next) => {

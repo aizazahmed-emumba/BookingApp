@@ -2,21 +2,15 @@ import React, { useEffect } from "react";
 import TourCard from "../Components/TourCard/TourCard";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const MyTour: React.FC = () => {
   const [tours, setTours] = React.useState<any>([]);
   const [loading, setLoading] = React.useState(true);
-  const user = useSelector((state: RootState) => state.user);
 
   const navigate = useNavigate();
-
-  if (!user._id) {
-    navigate("/login?redirect=/MyTours");
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +28,13 @@ const MyTour: React.FC = () => {
         );
         console.log(response.data);
         setTours(response.data);
-      } catch (error) {
+      } catch (error: any) {
+        if (error.response.status === 401) {
+          navigate("/login?redirect=/MyTours");
+        } else {
+          toast.error("Something went wrong");
+        }
+
         console.log(error);
       } finally {
         setLoading(false);
