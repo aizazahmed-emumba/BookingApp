@@ -34,7 +34,7 @@ app.use(cors({
 app.use('/api/booking',BookingRoutes)
 app.use('/api/tour',TourRoutes)
 app.use('/api/posts',PostRoutes)
-app.use('/api/user',UserRoutes)
+app.use('/api/user',UserRoutes) 
 app.use('/api/cloudinary',ImageRoutes)
 
 const __dirname = path.resolve();

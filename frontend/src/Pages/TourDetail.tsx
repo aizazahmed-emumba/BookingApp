@@ -125,7 +125,7 @@ const TourDetail: React.FC = () => {
         <div className="grid grid-cols-2 gap-4 ">
           <div className="w-full h-52 overflow-hidden">
             <img
-              src="../../public/Miami.webp"
+              src="/Miami.webp"
               alt="Miami"
               className="w-full h-full object-cover overflow-hidden rounded-3xl hover:scale-105 transition duration-300 ease-in-out"
             />
@@ -133,7 +133,7 @@ const TourDetail: React.FC = () => {
           <div className="w-full h-52 overflow-hidden ">
             {" "}
             <img
-              src="../../public/Miami2.webp"
+              src="/Miami2.webp"
               alt="Miami"
               className="w-full h-full object-cover overflow-hidden rounded-3xl hover:scale-105 transition duration-300 ease-in-out"
             />
@@ -141,7 +141,7 @@ const TourDetail: React.FC = () => {
           <div className="w-full h-52 overflow-hidden ">
             {" "}
             <img
-              src="../../public/Miami3.jpg"
+              src="/Miami3.jpg"
               alt="Miami"
               className="w-full h-full object-cover overflow-hidden rounded-3xl hover:scale-105 transition duration-300 ease-in-out"
             />
@@ -149,7 +149,7 @@ const TourDetail: React.FC = () => {
           <div className="w-full h-52  overflow-hidden">
             {" "}
             <img
-              src="../../public/Miami5.jpg"
+              src="/Miami5.jpg"
               alt="Miami"
               className="w-full h-full object-cover overflow-hidden rounded-3xl hover:scale-105 transition duration-300 ease-in-out"
             />
