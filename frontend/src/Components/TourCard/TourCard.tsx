@@ -12,6 +12,7 @@ import axios from "axios";
 import AlertDialog from "../AlertDialog";
 import { useState } from "react";
 import React from "react";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 interface TourCardProps {
   title: string;
@@ -43,7 +44,7 @@ const ImgMediaCard: React.FC<TourCardProps> = ({
         withCredentials: true,
       };
       const response = await axios.delete(
-        `http://localhost:5000/api/tour/${id}`,
+        `${BACKEND_URL}/api/tour/${id}`,
         config
       );
       console.log(response);
