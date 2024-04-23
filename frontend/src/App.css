@@ -1,0 +1,7 @@
+.HomeBackgroundImage{
+    background-image: url('../public/Rectangle.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: start;
+    background-size: 100% 70%;
+}

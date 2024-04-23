@@ -1,0 +1,32 @@
+/* .CardButtonContainer{
+    transition: all 0.5s;
+    display: none;
+}
+
+
+.Card:hover .CardButtonContainer{
+    transition: all 0.5s;
+     display: block;
+
+}
+
+.Card:hover .CarddetailContainer{
+    transition: all 0.5s;
+    display: none;
+} */
+
+.CardButtonContainer {
+    opacity: 0; /* Start with opacity 0 to hide the container */
+    transition: opacity 0.5s; /* Apply transition to opacity */
+
+}
+
+.Card:hover .CardButtonContainer {
+    opacity: 1; /* When hovering, change opacity to 1 to show the container */
+  
+}
+
+.Card:hover .CarddetailContainer {
+    opacity: 0; /* Hide .CarddetailContainer when hovering */
+
+}
