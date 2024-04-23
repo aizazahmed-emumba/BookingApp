@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import axios from "axios";
 import { clearUser } from "../../Slices/userSlice";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Navbar: React.FC = () => {
   const user = useSelector((state: RootState) => state.user);
   const Dispatch = useDispatch();
+  const navigate = useNavigate();
   const HandleLogout = async () => {
     try {
       const config = {
@@ -25,7 +28,12 @@ const Navbar: React.FC = () => {
       );
       console.log(response);
       Dispatch(clearUser());
+      if (response.status === 200) {
+        toast.success("Logged out successfully");
+        navigate("/Login");
+      }
     } catch (err) {
+      toast.error("Error logging out");
       console.error(err);
     }
   };
