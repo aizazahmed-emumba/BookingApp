@@ -2,7 +2,6 @@ import express from 'express';
 import connectDB from './config/db.js';
 import dotenv from 'dotenv';
 import UserRoutes from './routes/UserRoutes.js';
-import PostRoutes from './routes/PostRoutes.js';
 import ImageRoutes from './routes/imageRoutes.js';
 import TourRoutes from './routes/TourRoutes.js';
 import BookingRoutes from './routes/BookingRoutes.js';
@@ -33,7 +32,6 @@ app.use(cors({
 
 app.use('/api/booking',BookingRoutes)
 app.use('/api/tour',TourRoutes)
-app.use('/api/posts',PostRoutes)
 app.use('/api/user',UserRoutes) 
 app.use('/api/cloudinary',ImageRoutes)
 
