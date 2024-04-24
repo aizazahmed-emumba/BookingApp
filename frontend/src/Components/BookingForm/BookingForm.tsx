@@ -74,7 +74,7 @@ export default function BasicFormControl() {
 
   return (
     <form
-      className="flex flex-col gap-5 justify-center items-centers"
+      className="flex flex-col gap-8 justify-center items-centers md:w-[70%]"
       onSubmit={handleSubmit(onSubmit)}
     >
       <FormControlWithHookForm
@@ -91,7 +91,7 @@ export default function BasicFormControl() {
         placeholder="Enter Your Email here"
       />
 
-      <div className="w-[70%] flex flex-row justify-between items-center">
+      <div className="md:w-[100%] w-full gap-2 flex flex-row justify-between items-center">
         <FormControlWithHookForm
           control={control}
           name="numberOfAdults"
@@ -116,7 +116,7 @@ export default function BasicFormControl() {
           control={control}
           render={({ field }) => (
             <Select
-              className="w-[70%]"
+              className="md:w-[100%] w-full"
               {...field}
               options={[
                 {
@@ -143,7 +143,7 @@ export default function BasicFormControl() {
         size="large"
         color="warning"
         type="submit"
-        className="w-[70%]"
+        className="md:w-[100%]"
       >
         Submit
       </Button>
@@ -172,6 +172,16 @@ const FormControlWithHookForm: React.FC<FormControlWithHookFormProps> = ({
       control={control}
       render={({ field: { onChange, value, name, ref, ...rest } }) => (
         <TextField
+          sx={{
+            width: "100%",
+          }}
+          InputProps={{
+            sx: {
+              borderRadius: "10px",
+              width: "100%",
+            },
+          }}
+          variant="outlined"
           size="small"
           {...rest}
           name={name}
@@ -179,7 +189,6 @@ const FormControlWithHookForm: React.FC<FormControlWithHookFormProps> = ({
           value={value}
           inputRef={ref}
           placeholder={placeholder}
-          // width={width}
         />
       )}
     />

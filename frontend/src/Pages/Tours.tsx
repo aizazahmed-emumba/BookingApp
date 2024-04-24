@@ -5,6 +5,8 @@ import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import { Button } from "@mui/material";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
+import FiltersDialog from "../Components/FiltersDialog/FiltersDialog";
+import TourNotFound from "../Components/TourNotFound/TourNotFound";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Tours: React.FC = () => {
@@ -17,6 +19,7 @@ const Tours: React.FC = () => {
 
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,45 +57,53 @@ const Tours: React.FC = () => {
     );
   }
 
-  if (tours.length === 0)
-    return (
-      <div className="h-screen w-full justify-center items-center flex">
-        <h1 className="font-bold text-3xl">No Tours Found</h1>
-      </div>
-    );
+  if (tours.length === 0 && searchParams.get("location"))
+    return <TourNotFound location={searchParams.get("location")!} />;
+  else if (tours.length === 0) return <TourNotFound location="All Locations" />;
 
   return (
-    <div className="p-10 py-24 ">
-      <div className=" w-full flex flex-row items-center justify-between">
-        <h1 className="font-bold text-3xl">
-          {location && `Top Destinations At "${searchParams.get("location")}"`}
-        </h1>
-        <Button
-          variant="outlined"
-          className="flex gap-2 justify-center items-center"
-          size="small"
-          style={{ borderColor: "#D3D3D3", color: "#000", fontWeight: 600 }}
-        >
-          <FilterListOutlinedIcon />
-          Filters
-        </Button>
-      </div>
+    <>
+      <div className="md:p-20 py-24 p-10 ">
+        <div className=" w-full flex flex-row items-center justify-between">
+          <h1 className="font-bold text-3xl">
+            {location &&
+              `Top Destinations At "${searchParams.get("location")}"`}
+          </h1>
+          <Button
+            onClick={() => setOpenDialog(true)}
+            variant="outlined"
+            className="flex gap-2 justify-center items-center"
+            size="small"
+            style={{
+              padding: "8px 10px",
+              borderColor: "#D3D3D3",
+              color: "#000",
+              fontWeight: 600,
+              borderRadius: 12,
+            }}
+          >
+            <FilterListOutlinedIcon />
+            Filters
+          </Button>
+        </div>
 
-      <div className="grid grid-cols-3 place-items-center gap-5 mt-10">
-        {tours.map((tour: any) => (
-          <TourCard
-            title={tour.name}
-            description={tour.description}
-            duration={tour.duration}
-            image={tour.image}
-            owner={false}
-            price={tour.price}
-            key={tour._id}
-            id={tour._id}
-          />
-        ))}
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center gap-5 mt-10 ">
+          {tours.map((tour: any) => (
+            <TourCard
+              title={tour.name}
+              description={tour.description}
+              duration={tour.duration}
+              image={tour.image}
+              owner={false}
+              price={tour.price}
+              key={tour._id}
+              id={tour._id}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+      <FiltersDialog open={openDialog} setOpen={setOpenDialog} />
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -10,7 +9,7 @@ type DetailCardProps = {
 };
 
 const DetailCard: React.FC<DetailCardProps> = ({ day, city }) => {
-  const [temp, setTemp] = React.useState<number | null>(null);
+  const [data, setData] = React.useState<any | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +21,8 @@ const DetailCard: React.FC<DetailCardProps> = ({ day, city }) => {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?lat=${data[0].lat}&lon=${data[0].lon}&appid=78977841b3829c21e9d4690fad98d74d&units=metric`
         );
-        setTemp(response.data.main.temp);
+        console.log(response.data);
+        setData(response.data);
       } catch (error) {
         console.log(error);
         toast.error("Failed to fetch weather data");
@@ -37,9 +37,11 @@ const DetailCard: React.FC<DetailCardProps> = ({ day, city }) => {
       <div className="flex justify-between items-center">
         <h2 className="text-lg font-bold">Day {day}</h2>
         <div className="flex justify-center items-center gap-2">
-          <WbSunnyOutlinedIcon />
+          <img
+            src={`http://openweathermap.org/img/wn/${data?.weather[0].icon}.png`}
+          />
           <div>
-            <p className="text-lg font-bold">{temp}°C</p>
+            <p className="text-lg font-bold">{data?.main.temp}°C</p>
           </div>
         </div>
       </div>

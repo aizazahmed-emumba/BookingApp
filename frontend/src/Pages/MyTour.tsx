@@ -4,6 +4,7 @@ import axios from "axios";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import TourNotFound from "../Components/TourNotFound/TourNotFound";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const MyTour: React.FC = () => {
@@ -53,20 +54,16 @@ const MyTour: React.FC = () => {
   }
 
   if (tours.length === 0) {
-    return (
-      <div className="h-screen w-full justify-center items-center flex">
-        <h1 className="text-2xl font-bold">No Tours Found</h1>
-      </div>
-    );
+    return <TourNotFound location="All Locations" />;
   }
 
   return (
-    <div className="p-10 py-24 ">
+    <div className="md:p-20 py-24 p-10">
       <div className=" w-full flex flex-row items-center justify-between">
         <h1 className="font-bold text-3xl">My Tours</h1>
         <div></div>
       </div>
-      <div className="grid grid-cols-3 place-items-center gap-5 mt-10">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center gap-5 mt-10">
         {tours.map((tour: any) => (
           <TourCard
             title={tour.name}

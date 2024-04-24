@@ -119,8 +119,6 @@ export const CreateTour = asyncHadnler(async (req, res) => {
         })
     
         const createdTour = await tour.save();
-
-        console.log(createdTour)
     
         res.status(201).json(createdTour);
  })

@@ -113,7 +113,7 @@ const TourDetail: React.FC = () => {
         </div>
         <div></div>
       </div>
-      <div className="grid grid-cols-2 gap-4 mt-10">
+      <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mt-10">
         <div className="w-full h-[27rem] rounded-lg overflow-hidden">
           {" "}
           <img
@@ -123,14 +123,14 @@ const TourDetail: React.FC = () => {
           />
         </div>
         <div className="grid grid-cols-2 gap-4 ">
-          <div className="w-full h-52 overflow-hidden">
+          <div className="w-full md:h-52 h-32 overflow-hidden">
             <img
               src="/Miami.webp"
               alt="Miami"
               className="w-full h-full object-cover overflow-hidden rounded-3xl hover:scale-105 transition duration-300 ease-in-out"
             />
           </div>
-          <div className="w-full h-52 overflow-hidden ">
+          <div className="w-full md:h-52 h-32 overflow-hidden ">
             {" "}
             <img
               src="/Miami2.webp"
@@ -138,7 +138,7 @@ const TourDetail: React.FC = () => {
               className="w-full h-full object-cover overflow-hidden rounded-3xl hover:scale-105 transition duration-300 ease-in-out"
             />
           </div>
-          <div className="w-full h-52 overflow-hidden ">
+          <div className="w-full md:h-52 h-32 overflow-hidden ">
             {" "}
             <img
               src="/Miami3.jpg"
@@ -146,7 +146,7 @@ const TourDetail: React.FC = () => {
               className="w-full h-full object-cover overflow-hidden rounded-3xl hover:scale-105 transition duration-300 ease-in-out"
             />
           </div>
-          <div className="w-full h-52  overflow-hidden">
+          <div className="w-full md:h-52 h-32  overflow-hidden">
             {" "}
             <img
               src="/Miami5.jpg"
@@ -156,7 +156,7 @@ const TourDetail: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="mt-10 px-10 text-center flex flex-col gap-5">
+      <div className="mt-10 md:px-10 px-2 text-center flex flex-col gap-5">
         {Lines.map((line, index) => {
           return (
             <Typography variant="body1" key={index} className="mb-10">
@@ -169,49 +169,51 @@ const TourDetail: React.FC = () => {
         <h1 className="text-4xl font-bold">What's Included</h1>
         <div className="p-2 mt-5">
           <div className="flex justify-between pb-6 items-center border-b border-black text-lg font-bold">
-            <div className="w-full px-20  ">
+            <div className="md:w-full md:px-20 px-2  ">
               <p>Destination</p>
             </div>
             <div className="w-full font-normal">
-              <p>{Tour?.city}</p>
+              <p className="text-end md:text-start"> {Tour?.city}</p>
             </div>
           </div>
           <div className="flex justify-between pb-6 items-center border-b border-black text-lg font-bold mt-5">
-            <div className="w-full px-20  ">
-              <p>Departure Location</p>
+            <div className="md:w-full md:px-20 p-2  ">
+              <p className="">Departure Location</p>
             </div>
             <div className="w-full font-normal">
-              <p>Street 58 Block D {Tour?.city}</p>
+              <p className="text-end md:text-start ">
+                Street 58 Block D {Tour?.city}
+              </p>
             </div>
           </div>
           <div className="flex justify-between pb-6 items-center border-b border-black text-lg font-bold mt-5">
-            <div className="w-full px-20  ">
+            <div className="md:w-full md:px-20 p-2  ">
               <p>Return</p>
             </div>
             <div className="w-full font-normal">
-              <p>7:00 PM on Day {Tour?.duration}</p>
+              <p className="text-end md:text-start">
+                7:00 PM on Day {Tour?.duration}
+              </p>
             </div>
           </div>
           <div className="flex justify-between pb-6 items-center border-b border-black text-lg font-bold mt-5">
-            <div className="w-[70%] px-20  ">
+            <div className="md:w-[70%] md:px-20 p-2  ">
               <p>Benefits</p>
             </div>
-            <div className="w-full font-normal grid grid-cols-2 gap-y-2">
-              <div className="flex justify-start items-center">
-                <CheckCircleIcon
-                  fontSize="small"
-                  className="text-green-500 mr-2"
-                />
-                <p>Basic first aid kit</p>
-              </div>{" "}
+            <div className="w-full  font-normal grid grid-cols-1 md:grid-cols-2 gap-y-2">
               {Tour?.facilities?.map((facility: string, index: number) => {
                 return (
-                  <div className="flex justify-start items-center" key={index}>
-                    <CheckCircleIcon
-                      fontSize="small"
-                      className="text-green-500 mr-2"
-                    />
-                    <p>{facility}</p>
+                  <div
+                    className="flex justify-end md:justify-center items-center px-2 md:p-0"
+                    key={index}
+                  >
+                    <div className="w-[30%]">
+                      <CheckCircleIcon
+                        fontSize="small"
+                        className="text-primary mr-3"
+                      />
+                    </div>
+                    <p className="w-full">{facility}</p>
                   </div>
                 );
               })}
@@ -221,7 +223,7 @@ const TourDetail: React.FC = () => {
       </div>
       <div className="mt-10">
         <h1 className="text-4xl font-bold">Itinerary Schedule</h1>
-        <div className="p-1 mt-5 flex justify-between items-center gap-5">
+        <div className="p-1 mt-5 flex flex-wrap md:flex-nowrap justify-between items-center gap-5">
           {Array.from({ length: Tour.duration }, (_, i) => (
             <DetailCard
               day={i + 1}
@@ -233,9 +235,9 @@ const TourDetail: React.FC = () => {
         </div>
 
         <div className="mt-10 text-2xl font-bold">
-          {Booking.length > 0 ? (
+          {Booking?.length > 0 ? (
             <>
-              <h1>Total Bookings: {Booking.length}</h1>
+              <h1>Total Bookings: {Booking?.length}</h1>
               <div className="mt-10">
                 <BookingResultTable Bookings={Booking} />
               </div>
@@ -248,7 +250,7 @@ const TourDetail: React.FC = () => {
         <div className="w-full flex justify-center items-center">
           <Link
             to={`/BookTour/${Tour?._id}`}
-            className="bg-[#F16B51] text-white p-3 rounded-lg w-1/4 text-center mt-10"
+            className="bg-[#F16B51] text-white p-3 rounded-lg md:w-1/4 w-full text-center mt-10"
           >
             Book Now
           </Link>

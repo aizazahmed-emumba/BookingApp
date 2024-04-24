@@ -69,7 +69,7 @@ const AutoCompleteLocation: React.FC<Props> = ({
   return (
     <Autocomplete
       id="AutocompleteLocation"
-      sx={{ width: 300 }}
+      sx={{ width: "100%" }}
       options={data?.results || []}
       autoHighlight
       autoComplete
@@ -83,11 +83,7 @@ const AutoCompleteLocation: React.FC<Props> = ({
       }}
       getOptionLabel={(option) => option.name}
       renderOption={(props, option) => (
-        <Box
-          component="li"
-          sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-          {...props}
-        >
+        <Box component="li" {...props}>
           {option.name} ({option.address})
         </Box>
       )}
