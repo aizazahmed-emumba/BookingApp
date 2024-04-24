@@ -10,6 +10,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import BookingSchema from "../../VlidationSchema/BookingSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
+
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 interface FormValues {
@@ -18,6 +21,7 @@ interface FormValues {
   numberOfAdults: number;
   numberOfChildren: number;
   paymentMethod: { label: string; value: string };
+  phoneNumber: string;
 }
 
 export default function BasicFormControl() {
@@ -33,6 +37,7 @@ export default function BasicFormControl() {
       numberOfAdults: 0,
       numberOfChildren: 0,
       paymentMethod: { label: "Credit Card", value: "credit_card" },
+      phoneNumber: "",
     },
     resolver: yupResolver(BookingSchema),
   });
@@ -90,6 +95,29 @@ export default function BasicFormControl() {
         label="Email"
         placeholder="Enter Your Email here"
       />
+
+      {/* <ReactPhoneInput /> */}
+      <FormControl>
+        <Label className="text-gray-500">Phone Number</Label>
+        <Controller
+          name="phoneNumber"
+          control={control}
+          render={({ field: { onChange, value, name, ref, ...rest } }) => (
+            <PhoneInput
+              {...rest}
+              inputProps={{
+                style: {
+                  width: "100%",
+                },
+              }}
+              className="w-full"
+              defaultCountry="fr"
+              value={value}
+              onChange={(phone) => onChange(phone)}
+            />
+          )}
+        />
+      </FormControl>
 
       <div className="md:w-[100%] w-full gap-2 flex flex-row justify-between items-center">
         <FormControlWithHookForm

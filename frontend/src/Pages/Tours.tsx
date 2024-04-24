@@ -63,9 +63,9 @@ const Tours: React.FC = () => {
 
   return (
     <>
-      <div className="md:p-20 py-24 p-10 ">
-        <div className=" w-full flex flex-row items-center justify-between">
-          <h1 className="font-bold text-3xl">
+      <div className="md:p-20 md:py-28 py-24 p-10 ">
+        <div className=" w-full flex flex-row items-center justify-between max-w-[1310px]">
+          <h1 className="font-black text-4xl">
             {location &&
               `Top Destinations At "${searchParams.get("location")}"`}
           </h1>
@@ -87,7 +87,7 @@ const Tours: React.FC = () => {
           </Button>
         </div>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center gap-5 mt-10 ">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 place-items-center gap-5 gap-y-10 mt-10 max-w-[1310px] ">
           {tours.map((tour: any) => (
             <TourCard
               title={tour.name}

@@ -95,7 +95,7 @@ const BasicFormControl: React.FC<Props> = ({
 
   return (
     <form
-      className="flex flex-col gap-5 justify-centesr items-centers"
+      className="flex flex-col gap-5 md:w-[70%]"
       onSubmit={handleSubmit(onSubmit)}
     >
       <FormControlWithHookForm
@@ -116,16 +116,18 @@ const BasicFormControl: React.FC<Props> = ({
         placeholder="Enter Your city here"
       /> */}
 
-      <AutoCompleteLocation
-        selectedLocation={selectedLocation}
-        setSelectedLocation={setSelectedLocation}
-      />
+      <div>
+        <AutoCompleteLocation
+          selectedLocation={selectedLocation}
+          setSelectedLocation={setSelectedLocation}
+        />
+      </div>
 
       <FormControlWithHookForm
         defautValue={description}
         control={control}
         name="description"
-        label="description"
+        label="Description"
         type="text"
         placeholder="Enter descriptions"
       />
@@ -134,7 +136,7 @@ const BasicFormControl: React.FC<Props> = ({
         defautValue={price.toString()}
         control={control}
         name="price"
-        label="price"
+        label="Price"
         type="number"
         placeholder="Enter price"
       />
@@ -144,7 +146,7 @@ const BasicFormControl: React.FC<Props> = ({
         control={control}
         name="duration"
         type="number"
-        label="duration"
+        label="Duration"
         placeholder="Enter duration number"
       />
 
@@ -153,7 +155,7 @@ const BasicFormControl: React.FC<Props> = ({
         control={control}
         name="start_date"
         type="date"
-        label="start date"
+        label="Start Date"
         placeholder="Enter start date"
       />
 
@@ -162,7 +164,7 @@ const BasicFormControl: React.FC<Props> = ({
         control={control}
         name="end_date"
         type="date"
-        label="end date"
+        label="End Date"
         placeholder="Enter end date"
       />
 
@@ -205,7 +207,7 @@ const BasicFormControl: React.FC<Props> = ({
         size="large"
         color="warning"
         type="submit"
-        className="w-[70%]"
+        className="md:w-[70%] w-full"
       >
         Submit
       </Button>
@@ -230,8 +232,8 @@ const FormControlWithHookForm: React.FC<FormControlWithHookFormProps> = ({
   name,
   label,
   placeholder,
-  width,
   type,
+  width,
   defautValue,
 }) => (
   <FormControl defaultValue={defautValue} required>
@@ -253,9 +255,9 @@ const FormControlWithHookForm: React.FC<FormControlWithHookFormProps> = ({
 );
 
 const StyledInput = styled(Input)(
-  ({ theme, ...props }) => `
+  ({ theme }) => `
   .${inputClasses.input} {
-    width: ${props.width || "70%"};
+    width: ${"100%"};
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.875rem;
     font-weight: 400;

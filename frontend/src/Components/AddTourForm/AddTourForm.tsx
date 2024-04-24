@@ -109,7 +109,7 @@ export default function BasicFormControl() {
 
   return (
     <form
-      className="flex flex-col gap-5 justify-centesr items-centers md:w-[70%]"
+      className="flex flex-col gap-5  md:w-[70%]"
       onSubmit={handleSubmit(onSubmit)}
     >
       <FormControlWithHookForm
@@ -183,7 +183,7 @@ export default function BasicFormControl() {
         <label>List of Facilites</label>
         <div className="flex flex-col gap-5">
           {fields.map((facility, index) => (
-            <div key={facility.id} className="flex w-full ">
+            <div key={facility.id} className="flex justify-between w-full ">
               <StyledInput
                 placeholder={`Enter facility name`}
                 type="text"
@@ -264,9 +264,9 @@ const FormControlWithHookForm: React.FC<FormControlWithHookFormProps> = ({
 );
 
 const StyledInput = styled(Input)(
-  ({ theme, ...props }) => `
+  ({ theme }) => `
   .${inputClasses.input} {
-    width: ${props.width || "100%"};
+    width: ${"100%"};
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.875rem;
     font-weight: 400;

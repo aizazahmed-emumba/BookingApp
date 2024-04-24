@@ -2,6 +2,8 @@ import React from "react";
 import UpdateTourForm from "../Components/UpdateTourForm/UpdateTourForm";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import TourNotFound from "../Components/TourNotFound/TourNotFound";
+import { CircularProgress } from "@mui/material";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const UpdateTour: React.FC = () => {
@@ -36,11 +38,15 @@ const UpdateTour: React.FC = () => {
   }, [id]);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="flex justify-center items-center">
+        <CircularProgress size={"100px"} />
+      </div>
+    );
   }
 
   if (!tour) {
-    return <h1>Tour not found</h1>;
+    return <TourNotFound location="All Locations" />;
   }
 
   return (

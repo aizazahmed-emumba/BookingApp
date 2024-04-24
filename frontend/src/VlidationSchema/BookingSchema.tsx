@@ -20,6 +20,7 @@ const schema = yup.object().shape({
       value: yup.string().required(),
     })
     .required(),
+  phoneNumber: yup.string().required(),
 });
 
 export default schema;
